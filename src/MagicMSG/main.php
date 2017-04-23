@@ -53,6 +53,17 @@ class main extends PluginBase {
 				$sender->sendMessage(TextFormat::RED."Error: Player not found.");	
 			}
 			break;
+			case "help":
+			$sender->sendMessage(TextFormat::YELLOW."Send message or popup: /magicmsg <message|popup> <player> <message> \n
+			Send message or popup to all: /magicmsg <msg|popup> all <message>\n
+			You can find me on twitter ".TextFormat::RED."@bouncyjeffer".TextFormat::YELLOW." if you need help.");
+			break;	
+			case "version":
+			$sender->sendMessage(TextFormat::YELLOW."This server is running version 1.0.0 of MagicMSG by BouncyJeffer. Twitter.com/BouncyJeffer");
+			break;
+			default:
+			$sender->sendMessage(TextFormat::RED."Error: Unknown sub-command. Try ".TextFormat::GREEN."/magicmsg help".TextFormat::RED." for help.");
+			break;
 		}
 	}
 	return true;
