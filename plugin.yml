@@ -1,0 +1,17 @@
+name: MagicMSG
+main: MagicMSG\main
+description: A plugin that'll allow you to send messages or popups to the entire server or individual players.
+author: BouncyJeffer
+website: Twitter.com/BouncyJeffer
+version: 1.0.0
+api: [3.0.0, 3.0.0-ALPHA4]
+load: POSTWORLD
+commands:
+ magicmsg:
+  description: Main command
+  usage: "/magicmw <msg|popup> <player|all> <message>"
+  permission: magicmw.cmd
+permissions:
+ magicmw.cmd:
+  description: Permission to all assests of the plugin.
+  default: op
