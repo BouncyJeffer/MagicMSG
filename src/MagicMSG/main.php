@@ -4,7 +4,7 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\command\CommandSender;
-use pocketmine\command\Comand;
+use pocketmine\command\Command;
 use pocketmine\utils\TextFormat;
 class main extends PluginBase {
     public function onLoad(){
