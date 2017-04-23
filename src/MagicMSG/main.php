@@ -18,17 +18,26 @@ class main extends PluginBase {
     }
     public function onCommand(CommandSender $sender, Command $command, $label, array $args){
    	if($command->getName() == "magicmsg"){
-   		if( !isset($args[0]) || !isset($args[1])){
-   			$sender->sendMessage(TextFormat::RED."Try ".TextFormat::GREEN."/magicmsg help".TextFormat::RED." for help.");
+   		if( !isset($args)){
+   			$sender->sendMessage(TextFormat::RED."Error: Missing arguments.");
+   			die;
    		}
 		switch(strtolower($args[0])){
 			case "warn":
+			if(!isset($args[1])){
+				$sender->sendMessage(TextFormat::RED."Error: You must define a player.");
+				die;
+			}
 			if($args[1] == "types"){
 				$sender->sendMessage(TextFormat::YELLOW."Warn types: ".TextFormat::RED."cuss, spam, advertise, rude, threat and hack.");
 				die;
 			}
 			$player = $this->getServer()->getPlayer($args[1]);
 			if($player instanceof Player){
+				if(!isset($args[2])){
+					$sender->sendMessage(TextFormat::RED."Error: You must define a type.");
+					die;
+				}
 				switch($args[2]){
 					case "cuss":
 					case "foul language":
@@ -70,8 +79,13 @@ class main extends PluginBase {
 			} else {
 				$sender->sendMessage(TextFormat::RED."Error: Player not found.");
 			}
+
 			break;
 			case "msg":
+			if(!isset($args[1])){
+				$sender->sendMessage(TextFormat::RED."Error: Must define a player or 'all'");
+				die;
+			}
 			if(strtolower($arg[1]) == "all"){
 				$players = $this->getServer()->getOnlinePlayers();
 				$sender->sendMessage(TextFormat::GREEN."Sending...");
@@ -89,6 +103,10 @@ class main extends PluginBase {
 			}
 			break;
 			case "popup":
+			if(!isset($args[1])){
+				$sender->sendMessage(TextFormat::RED."Error: Must define a player or \"all\"");
+				die;
+			}
 			if(strtolower($arg[1]) == "all"){
 				$players = $this->getServer()->getOnlinePlayers();
 				$sender->sendMessage(TextFormat::GREEN."Sending...");
@@ -106,9 +124,7 @@ class main extends PluginBase {
 			}
 			break;
 			case "help":
-			$sender->sendMessage(TextFormat::YELLOW."Send message or popup: /magicmsg <message|popup> <player> <message> \n
-			Send message or popup to all: /magicmsg <msg|popup> all <message>\n
-			You can find me on twitter ".TextFormat::RED."@bouncyjeffer".TextFormat::YELLOW." if you need help.");
+			$sender->sendMessage(TextFormat::YELLOW."Send message or popup: /magicmsg <message|popup> <player> <message> \nSend message or popup to all: /magicmsg <msg|popup> all <message>\nYou can find me on twitter ".TextFormat::RED."@bouncyjeffer".TextFormat::YELLOW." if you need help.");
 			break;	
 			case "version":
 			$sender->sendMessage(TextFormat::YELLOW."This server is running version 1.0.0 of MagicMSG by BouncyJeffer. Twitter.com/BouncyJeffer");
