@@ -17,7 +17,10 @@ class main extends PluginBase {
     	$this->getLogger()->info(TextFormat::RED."has been disabled.");
     }
     public function onCommand(CommandSender $sender, Command $command, $label, array $args){
-   	if(strtolower($command->getName()) == "magicmw"){
+   	if($command->getName() == "magicmsg"){
+   		if( !isset($args[0]) || !isset($args[1])){
+   			$sender->sendMessage(TextFormat::RED."Try ".TextFormat::GREEN."/magicmsg help".TextFormat::RED." for help.");
+   		}
 		switch(strtolower($args[0])){
 			case "warn":
 			if($args[1] == "types"){
