@@ -19,6 +19,55 @@ class main extends PluginBase {
     public function onCommand(CommandSender $sender, Command $command, $label, array $args){
    	if(strtolower($command->getName()) == "magicmw"){
 		switch(strtolower($args[0])){
+			case "warn":
+			if($args[1] == "types"){
+				$sender->sendMessage(TextFormat::YELLOW."Warn types: ".TextFormat::RED."cuss, spam, advertise, rude, threat and hack.");
+				die;
+			}
+			$player = $this->getServer()->getPlayer($args[1]);
+			if($player instanceof Player){
+				switch($args[2]){
+					case "cuss":
+					case "foul language":
+					case "inappropriate language":
+					case "swear":
+					$sender->sendMessage(TextFormat::RED.$arg[1]." was warned for inappropriate language.");
+					$player->sendMessage(TextFormat::RED."You have been warned by ".TextFormat::YELLOW.$sender->getName().TextFormat::RED." 
+					for inappropriate language.");
+					break;
+					case "spam":
+					$sender->sendMessage(TextFormat::RED.$args[1]." was warned for spamming.");
+					$player->sendMessage(TextFormat::RED."You have been warned by ".TextFormat::YELLOW.$sender->getName().TextFormat::RED." 
+					for spamming.");
+					break;
+					case "advertise":
+					$sender->sendMessage(TextFormat::RED.$args[1]." was warned for advertising.");
+					$player->sendMessage(TextFormat::RED."You have been warned by ".TextFormat::YELLOW.$sender->getName().TextFormat::RED." 
+					for advertising.");
+					break;
+					case "rude":
+					$sender->sendMessage(TextFormat::RED.$args[1]." was warned for offensive behavior.");
+					$player->sendMessage(TextFormat::RED."You have been warned by ".TextFormat::YELLOW.$sender->getName().TextFormat::RED." 
+					for offensive behavior.");
+					break;
+					case "threat":
+					$sender->sendMessage(TextFormat::RED.$args[1]." was warned for threatening.");
+					$player->sendMessage(TextFormat::RED."You have been warned by ".TextFormat::YELLOW.$sender->getName().TextFormat::RED." 
+					for threatening.");
+					break;
+					case "hacking":
+					$sender->sendMessage(TextFormat::RED.$args[1]." was warned for the use of client modifications.");
+					$player->sendMessage(TextFormat::RED."You have been warned by ".TextFormat::YELLOW.$sender->getName().TextFormat::RED." 
+					for the use of client modifications, please turn them off.");
+					break;
+					default:
+					$sender->sendMessage(TextFormat::RED."Error: Unknown warn type.");
+					break;
+				}
+			} else {
+				$sender->sendMessage(TextFormat::RED."Error: Player not found.");
+			}
+			break;
 			case "msg":
 			if(strtolower($arg[1]) == "all"){
 				$players = $this->getServer()->getOnlinePlayers();
