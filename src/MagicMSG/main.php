@@ -20,6 +20,14 @@ class main extends PluginBase {
    	if(strtolower($command->getName()) == "magicmw"){
 		switch(strtolower($args[0])){
 			case "sendmsg":
+			if(strtolower($arg[1]) == "all"){
+				$players = $this->getServer()->getOnlinePlayers();
+				$sender->sendMessage(TextFormat::GREEN."Sending...");
+				foreach($players as $p){
+					$p->sendMessage(substr(implode(" ", $args), strlen($args[1]) + 3));	
+				}
+				die;
+			}
 			$player = $this->getServer()->getPlayer($args[0]);
 			if($player instanceof Player){
 				$player->sendMessage(substr(implode(" ", $args), strlen($args[1]) + 7));
